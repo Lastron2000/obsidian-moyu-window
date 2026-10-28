@@ -1,0 +1,9 @@
+{
+  "id": "moyu-window",
+  "name": "Moyu Window",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "True window transparency, distraction-free reading, and a global panic key",
+  "author": "Lastron",
+  "isDesktopOnly": true
+}

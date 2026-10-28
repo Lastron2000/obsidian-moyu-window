@@ -1,0 +1,245 @@
+/* 摸鱼窗口：只清背景，不动文字颜色，不动弹窗 */
+
+body.moyu-hidden {
+  --background-primary: transparent !important;
+  --background-primary-alt: transparent !important;
+  --background-secondary: transparent !important;
+  --background-secondary-alt: transparent !important;
+  --background-modifier-border: transparent !important;
+  --background-modifier-border-hover: transparent !important;
+  --background-modifier-form-field: transparent !important;
+  --workspace-background-translucent: rgba(0, 0, 0, 0) !important;
+  --tab-background-active: transparent !important;
+  --tab-outline-color: transparent !important;
+  --titlebar-background: transparent !important;
+  --titlebar-background-focused: transparent !important;
+  --ribbon-background: transparent !important;
+  --divider-color: transparent !important;
+  --background-modifier-hover: rgba(127, 127, 127, 0.10) !important;
+}
+
+body.moyu-hidden .app-container,
+body.moyu-hidden .horizontal-main-container,
+body.moyu-hidden .workspace,
+body.moyu-hidden .workspace-split,
+body.moyu-hidden .workspace-tabs,
+body.moyu-hidden .workspace-tab-header-container,
+body.moyu-hidden .workspace-tab-container,
+body.moyu-hidden .workspace-leaf,
+body.moyu-hidden .workspace-leaf-content,
+body.moyu-hidden .view-header,
+body.moyu-hidden .view-content,
+body.moyu-hidden .markdown-source-view,
+body.moyu-hidden .markdown-reading-view,
+body.moyu-hidden .cm-editor,
+body.moyu-hidden .cm-scroller,
+body.moyu-hidden .cm-gutters,
+body.moyu-hidden .status-bar,
+body.moyu-hidden .titlebar {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* 伪元素常被主题用来铺底色，一起清 */
+body.moyu-hidden .workspace::before,
+body.moyu-hidden .workspace::after,
+body.moyu-hidden .app-container::before,
+body.moyu-hidden .app-container::after,
+body.moyu-hidden .view-content::before,
+body.moyu-hidden .view-content::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* 正文段落本身不带底色 */
+body.moyu-hidden .cm-line,
+body.moyu-hidden .markdown-preview-view p {
+  background: transparent !important;
+}
+
+/* 弹窗、命令面板、菜单保持不透明，否则调设置时自己也看不见 */
+body.moyu-hidden .modal,
+body.moyu-hidden .modal-container,
+body.moyu-hidden .prompt,
+body.moyu-hidden .menu,
+body.moyu-hidden .suggestion-container,
+body.moyu-hidden .menu-item {
+  background-color: var(--background-primary, #1e1e1e) !important;
+  background: var(--background-primary, #1e1e1e) !important;
+}
+
+/* 滚动条：墨鱼专门排除在透明化之外，否则长文没法拖 */
+body.moyu-hidden ::-webkit-scrollbar-thumb {
+  background-color: rgba(140, 140, 140, 0.45) !important;
+}
+body.moyu-hidden ::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* 状态栏三颗开关：摸鱼 / 纯文字 / 日夜，各管各的 */
+.status-bar-item.moyu-status {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 120ms ease-out;
+  user-select: none;
+  padding: 0 7px;
+}
+.status-bar-item.moyu-status:hover {
+  opacity: 1;
+}
+.status-bar-item.moyu-status.moyu-on {
+  opacity: 1;
+  color: #e0b341;
+  font-weight: 500;
+}
+.status-bar-item.moyu-status.moyu-dark {
+  opacity: 1;
+  color: #8ab4f8;
+}
+/* 三颗之间拉一道细线，避免看起来连成一片 */
+.status-bar-item.moyu-status-mode {
+  margin-left: 8px;
+}
+.status-bar-item.moyu-status-pure,
+.status-bar-item.moyu-status-theme {
+  margin-left: 4px;
+  border-left: 1px solid var(--background-modifier-border, rgba(128, 128, 128, 0.28));
+}
+
+/* 设置页的状态提示 */
+.moyu-state-box {
+  margin: 8px 0 16px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: var(--background-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.moyu-state-box .moyu-ok { color: #4caf50; }
+.moyu-state-box .moyu-bad { color: #e07a5f; }
+.moyu-help { line-height: 1.9; }
+.moyu-opacity-label {
+  margin: 6px 0 12px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+.moyu-recording {
+  background: #e0b341 !important;
+  color: #111 !important;
+  border-color: #e0b341 !important;
+}
+
+/* 壁纸对位：把桌面壁纸按窗口在屏幕上的位置铺上来，看起来就是透明。
+   --moyu-wp / --moyu-wp-size / --moyu-wp-pos 由插件实时写入。 */
+body.moyu-hidden {
+  background-image: var(--moyu-wp, none) !important;
+  background-size: var(--moyu-wp-size, auto) !important;
+  background-position: var(--moyu-wp-pos, 0 0) !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  background-color: transparent !important;
+}
+
+/* 补漏：1.12 的这几层也可能带底色，全清一遍 */
+body.moyu-hidden .cm-s-obsidian,
+body.moyu-hidden .markdown-preview-sizer,
+body.moyu-hidden .markdown-preview-section,
+body.moyu-hidden .workspace-tab-header,
+body.moyu-hidden .workspace-drawer,
+body.moyu-hidden .mod-sidedock,
+body.moyu-hidden .nav-header,
+body.moyu-hidden .nav-folder-title,
+body.moyu-hidden .nav-file-title,
+body.moyu-hidden .inline-title,
+body.moyu-hidden .markdown-embed,
+body.moyu-hidden .markdown-embed-content,
+body.moyu-hidden .callout {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* 正文本身不能透明，否则字也没了 */
+body.moyu-hidden .cm-content,
+body.moyu-hidden .markdown-preview-view {
+  opacity: 1 !important;
+  color: var(--text-normal) !important;
+}
+
+/* ---------- 纯文字模式：界面全藏，只留正文 ---------- */
+
+body.moyu-pure .workspace-ribbon,
+body.moyu-pure .workspace-split.mod-left-split,
+body.moyu-pure .workspace-split.mod-right-split,
+body.moyu-pure .workspace-tab-header-container,
+body.moyu-pure .view-header,
+body.moyu-pure .titlebar,
+body.moyu-pure .workspace-leaf-resize-handle,
+body.moyu-pure .sidebar-toggle-button,
+body.moyu-pure .workspace-tab-header-spacer {
+  display: none !important;
+}
+
+/* 状态栏必须留着 —— 它是「摸鱼」那颗开关的落脚点，藏了就没有出口了 */
+body.moyu-pure .status-bar {
+  display: flex !important;
+  opacity: 0.35;
+  transition: opacity 150ms ease-out;
+}
+body.moyu-pure .status-bar:hover {
+  opacity: 1;
+}
+
+/* 右上角再挂一个退出按钮，双保险 */
+.moyu-exit {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99999;
+  font-size: 15px;
+  line-height: 1;
+  background: rgba(128, 128, 128, 0.14);
+  color: var(--text-muted, #888);
+  opacity: 0.2;
+  transition: opacity 150ms ease-out, background 150ms ease-out, color 150ms ease-out;
+  user-select: none;
+}
+.moyu-exit:hover {
+  opacity: 1;
+  background: rgba(190, 70, 70, 0.85);
+  color: #fff;
+}
+body:not(.moyu-pure) .moyu-exit {
+  display: none;
+}
+
+body.moyu-pure .workspace-split.mod-root,
+body.moyu-pure .workspace-tabs,
+body.moyu-pure .workspace-leaf,
+body.moyu-pure .workspace-leaf-content,
+body.moyu-pure .view-content,
+body.moyu-pure .markdown-source-view,
+body.moyu-pure .markdown-reading-view {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  gap: 0 !important;
+}
+
+/* 正文留出边距，不要贴屏幕边 */
+body.moyu-pure .markdown-source-view .cm-content,
+body.moyu-pure .markdown-reading-view .markdown-preview-view {
+  padding-left: 8vw !important;
+  padding-right: 8vw !important;
+}
