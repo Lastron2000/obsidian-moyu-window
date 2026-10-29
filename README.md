@@ -26,9 +26,15 @@ If you would rather not patch, leave `Wallpaper fallback` enabled in settings: t
 
 ## Install
 
-### 1. Copy the plugin
+### With BRAT (recommended)
 
-Put `main.js`, `manifest.json` and `styles.css` into:
+1. Install **BRAT** from the community plugin browser.
+2. In BRAT, choose *Add Beta plugin* and enter `Lastron2000/obsidian-moyu-window`.
+3. Enable **Moyu Window** under Settings → Community plugins.
+
+### Manual
+
+Download `main.js`, `manifest.json` and `styles.css` from the [latest release](https://github.com/Lastron2000/obsidian-moyu-window/releases/latest) and drop them into:
 
 ```
 <vault>/.obsidian/plugins/moyu-window/
@@ -37,7 +43,6 @@ Put `main.js`, `manifest.json` and `styles.css` into:
 Then enable it under **Settings → Community plugins**.
 
 ### 2. Enable true transparency (optional)
-
 The plugin folder only ships three files. Grab `scripts/patch-asar.js` from this repository, run it with Node.js:
 
 ```bash
